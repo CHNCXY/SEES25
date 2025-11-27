@@ -1,0 +1,432 @@
+testclass BaseTests for statechart vacprod {
+
+	@Test
+	operation testBatteryMode() {
+		enter
+		Pwr.mode = 1
+		raise Pwr.fault
+		assert Pwr.fillStop
+		assert Pwr.packStop
+		exit
+	}
+	
+	@Test
+	operation testGeneratorMode1() {
+		enter
+		Pwr.mode = 2
+		raise Pwr.fault
+		assert !Pwr.fillStop
+		assert Pwr.packStop
+		exit
+	}
+	
+	@Test
+	operation testGeneratorModeSwitch() {
+		enter
+		raise Fill.refill
+		Fill.tank = true
+		Pwr.mode = 1
+		raise Pwr.fault
+		assert Pwr.fillStop
+		assert Pwr.packStop
+		proceed 1s
+		assert !Fill.botFilled
+		proceed 1s
+		assert !Fill.botFilled
+		proceed 1s
+		assert !Fill.botFilled
+		raise Pwr.genStart
+		assert Pwr.packStop
+		assert !Pwr.fillStop
+		assert Pwr.fillRes
+		proceed 3s
+		assert Fill.botFilled
+		exit
+	}
+	
+	@Test
+	operation testUnknownPwrFault() {
+		enter
+		Pwr.mode = 4
+		raise Pwr.fault
+		assert Pwr.unknown
+		assert !Pwr.fillStop
+		assert !Pwr.packStop
+		exit
+	}
+	
+	@Test
+	operation testPwrFaultIgnore() {
+		enter
+		Pwr.mode = 0
+		raise Pwr.fault
+		assert !Pwr.fillStop
+		assert !Pwr.packStop
+		Pwr.mode = 1
+		raise Pwr.fault
+		assert Pwr.fillStop
+		assert Pwr.packStop
+		exit
+	}
+	
+	@Test
+	operation testPwrRestore() {
+		enter
+		Pwr.mode = 1
+		Fill.refill
+		raise Pwr.fault
+		assert Pwr.fillStop
+		assert Pwr.packStop
+		proceed 3s
+		assert !Fill.botFilled
+		proceed 2s
+		assert !Pack.labelled
+		Pwr.mode = 0
+		raise Pwr.restore
+		assert Pwr.fillRes
+		assert Pwr.packRes
+		exit
+	}
+	
+	@Test
+	operation testFillNormal() {
+		enter
+		Fill.tank = true
+		raise Fill.refill
+		assert Fill.feed
+		proceed 1s
+		assert Fill.check
+		proceed 1s
+		assert Fill.fill
+		proceed 1s
+		assert Fill.botFilled
+		proceed 3s
+		assert Fill.botFilled
+		exit
+	}
+	
+	@Test
+	operation testFillNoBottle() {
+		enter
+		Fill.tank = true
+		Fill.bottle = false
+		raise Fill.refill
+		assert Fill.feed
+		proceed 1s
+		assert Fill.reqRestock
+		proceed 2s
+		assert !Fill.botFilled
+		raise Fill.restock
+		assert Fill.check
+		proceed 1s
+		assert Fill.fill
+		proceed 1s
+		assert Fill.botFilled
+		exit
+	}
+	
+	@Test
+	operation testFillNotIntact() {
+		enter
+		Fill.tank = true
+		Fill.intact = false
+		raise Fill.refill
+		proceed 2s
+		assert Fill.discard
+		assert !Fill.botFilled
+		Fill.intact = true
+		proceed 3s
+		assert Fill.botFilled
+		exit
+	}
+	
+	@Test
+	operation testFillTankEmpty() {
+		enter
+		raise Fill.refill
+		proceed 2s
+		Fill.tank = false
+		proceed 1s
+		assert Fill.reqRefill
+		assert !Fill.botFilled
+		proceed 1s
+		assert !Fill.botFilled
+		proceed 2s
+		assert !Fill.botFilled
+		raise Fill.refill
+		assert Fill.botFilled
+		exit
+	}
+	
+	@Test
+	operation testPackNormal() {
+		enter
+		Fill.tank = true
+		raise Fill.refill
+		proceed 3s
+		assert Fill.botFilled
+		assert Pack.seal
+		proceed 1s
+		assert Pack.lblNo == 1
+		assert Pack.print
+		proceed 1s
+		assert Pack.labelled
+		proceed 2s
+		assert !Pack.labelled
+		proceed 1s
+		assert Pack.labelled
+		exit
+	}
+	
+	@Test
+	operation testPackCrimp1() {
+		enter
+		Fill.tank = true
+		Pack.sealed = false
+		raise Fill.refill
+		proceed 5s
+		assert !Pack.labelled
+		Pack.sealed = true
+		proceed 2s
+		assert Pack.labelled
+		exit
+	}
+	
+	@Test
+	operation testPackCrimp2() {
+		enter
+		Fill.tank = true
+		Pack.sealed = false
+		raise Fill.refill
+		proceed 5s
+		assert !Pack.crimpCheck
+		assert !Pack.labelled
+		proceed 1s
+		assert !Pack.crimpCheck
+		proceed 1s
+		assert Pack.crimpCheck
+		Pack.sealed = true
+		raise Pack.crimpOK
+		proceed 2s
+		assert Pack.labelled
+		exit
+	}
+	
+	@Test
+	operation testTempFaultEm() {
+		enter
+		proceed 1s
+		assert !Env.tFault
+		assert !Env.emergency
+		Env.t = Env.absMaxT + 1.0
+		proceed 1s
+		assert Env.tFault
+		assert Env.emergency
+		exit
+	}
+	
+	@Test
+	operation testTempTriggerEm() {
+		enter
+		Env.t = Env.maxT + 1.0
+		proceed 3s
+		assert Env.tFault
+		assert !Env.emergency
+		Env.t = Env.absMaxT + 1.0
+		proceed 1s
+		assert Env.tFault
+		assert Env.emergency
+		exit
+	}
+	
+	@Test
+	operation testTempFault() {
+		enter
+		proceed 3s
+		assert !Env.tFault
+		assert !Env.emergency
+		Env.t = Env.maxT + 1.0
+		proceed 3s
+		assert Env.tFault
+		assert !Env.emergency
+		exit
+	}
+	
+	@Test
+	operation testTempFaultRecovery() {
+		enter
+		proceed 3s
+		assert !Env.tFault
+		assert !Env.emergency
+		Env.t = Env.maxT + 1.0
+		proceed 3s
+		assert Env.tFault
+		assert !Env.emergency
+		Env.t = Env.maxT - 1.0
+		proceed 1s
+		Env.t = Env.maxT + 1.0
+		assert !Env.tFault
+		proceed 3s
+		assert Env.tFault
+		assert !Env.emergency
+		exit
+	}
+	
+	@Test
+	operation testPartFaultEm() {
+		enter
+		proceed 2s
+		assert !Env.pFault
+		assert !Env.emergency
+		Env.partL = Env.maxPartL + 1
+		proceed 1s
+		assert Env.pFault
+		assert !Env.emergency
+		proceed 1s
+		assert Env.pFault
+		assert Env.emergency
+		exit
+	}
+	
+	@Test
+	operation testPartTriggerNoEm() {
+		enter
+		proceed 2s
+		assert !Env.pFault
+		assert !Env.emergency
+		Env.partL = Env.maxPartL + 1
+		proceed 1s
+		assert Env.pFault
+		assert !Env.emergency
+		Env.partL = Env.maxPartL - 1
+		proceed 1s
+		assert !Env.pFault
+		assert !Env.emergency
+		exit
+	}
+	
+	@Test
+	operation testPressureSens() {
+		enter
+		var i: integer = 0
+		while (i < 11) {
+		Env.p = Env.minP - 1
+		proceed 1s
+		assert Env.pUp
+		Env.p = Env.maxP + 1
+		proceed 1s
+		assert Env.pLower
+		proceed 1s
+		assert Env.pLower
+		i = i + 1
+		}
+		exit
+	}
+	
+	@Test
+	operation testBreach() {
+		enter
+		Env.t = Env.maxT + 1
+		proceed 3s
+		assert Env.tFault
+		assert !Env.emergency
+		Env.p = Env.absMinP - 1
+		proceed 1s
+		Env.partL = Env.maxPartL + 1
+		Env.partS = Env.maxPartS + 1
+		proceed 1s
+		assert Env.pFault
+		assert Env.breach
+		assert Env.emergency
+		exit
+	}
+	
+	@Test
+	operation testEmergencyReset() {
+		enter
+		proceed 1s
+		assert !Env.tFault
+		assert !Env.emergency
+		Env.t = Env.absMaxT + 1.0
+		proceed 1s
+		assert Env.tFault
+		assert Env.emergency
+		proceed 1s
+		assert Env.airClear
+		raise Env.reset
+		assert Env.emRes
+		assert Env.filterDef	
+		exit
+	}
+	
+	@Test
+	operation testProductionCycle() {
+		enter
+		raise Fill.refill
+		Fill.tank = true
+	    var i: integer = 0
+		while (i < 10) {
+			assert Fill.feed
+			proceed 1s
+			assert Fill.check
+			proceed 1s
+			assert Fill.fill
+			proceed 1s
+			assert Fill.botFilled
+			assert Pack.seal
+			assert Fill.feed
+			proceed 1s
+			assert Pack.print
+			assert Fill.check
+			proceed 1s
+			assert Fill.fill
+			assert Pack.labelled
+			proceed 1s
+			assert Fill.botFilled
+			assert Pack.seal
+			i = i + 1
+		}
+		exit
+	}
+	
+	@Test
+	operation testEmResolve() {
+		enter
+		raise Fill.refill
+		Fill.tank = true
+		Env.t = Env.maxT + 1
+		proceed 3s
+		assert Fill.botFilled
+		assert Pack.seal
+		assert !Env.emergency
+		Env.p = Env.absMinP - 1
+		Env.partL = Env.maxPartL + 1
+		Env.partS = Env.maxPartS + 1
+		proceed 1s
+		assert Pack.print
+		assert Fill.check
+		assert Env.breach
+		assert Env.emergency
+		assert Env.filterMax
+		assert Env.cool
+		Env.t = Env.minT - 1
+		Env.partL = Env.maxPartL - 1
+		Env.partS = Env.maxPartS - 1
+		proceed 1s
+		assert !Pack.labelled
+		assert !Fill.fill
+		assert Env.airClear
+		assert Env.heat
+		Env.t = Env.minT + 1
+		proceed 1s
+		assert Env.emRes
+		assert Env.filterDef
+		proceed 1s
+		assert Fill.fill
+		proceed 1s
+		assert Fill.botFilled
+		assert Pack.seal
+		exit
+	}
+
+}
