@@ -4,53 +4,26 @@
   <testcase name="testGeneratorMode1" classname="platform:/resource/sees-secps-ha-25/BaseTests-25.sctunit#BaseTests.testGeneratorMode1" time="">
   </testcase>
   <testcase name="testGeneratorModeSwitch" classname="platform:/resource/sees-secps-ha-25/BaseTests-25.sctunit#BaseTests.testGeneratorModeSwitch" time="">
-    <failure>Assertion failed: "assert Fill.botFilled" (Line 43)
-    	name: Fill.botFilled, value: 
-    </failure>
   </testcase>
   <testcase name="testUnknownPwrFault" classname="platform:/resource/sees-secps-ha-25/BaseTests-25.sctunit#BaseTests.testUnknownPwrFault" time="">
-    <failure>Assertion failed: "assert !Pwr.fillStop" (Line 53)
-    	name: Pwr.fillStop, value: 
-    </failure>
   </testcase>
   <testcase name="testPwrFaultIgnore" classname="platform:/resource/sees-secps-ha-25/BaseTests-25.sctunit#BaseTests.testPwrFaultIgnore" time="">
   </testcase>
   <testcase name="testPwrRestore" classname="platform:/resource/sees-secps-ha-25/BaseTests-25.sctunit#BaseTests.testPwrRestore" time="">
   </testcase>
   <testcase name="testFillNormal" classname="platform:/resource/sees-secps-ha-25/BaseTests-25.sctunit#BaseTests.testFillNormal" time="">
-    <failure>Assertion failed: "assert Fill.botFilled" (Line 102)
-    	name: Fill.botFilled, value: 
-    </failure>
   </testcase>
   <testcase name="testFillNoBottle" classname="platform:/resource/sees-secps-ha-25/BaseTests-25.sctunit#BaseTests.testFillNoBottle" time="">
-    <failure>Assertion failed: "assert Fill.botFilled" (Line 124)
-    	name: Fill.botFilled, value: 
-    </failure>
   </testcase>
   <testcase name="testFillNotIntact" classname="platform:/resource/sees-secps-ha-25/BaseTests-25.sctunit#BaseTests.testFillNotIntact" time="">
-    <failure>Assertion failed: "assert Fill.botFilled" (Line 139)
-    	name: Fill.botFilled, value: 
-    </failure>
   </testcase>
   <testcase name="testFillTankEmpty" classname="platform:/resource/sees-secps-ha-25/BaseTests-25.sctunit#BaseTests.testFillTankEmpty" time="">
-    <failure>Assertion failed: "assert Fill.reqRefill" (Line 150)
-    	name: Fill.reqRefill, value: 
-    </failure>
   </testcase>
   <testcase name="testPackNormal" classname="platform:/resource/sees-secps-ha-25/BaseTests-25.sctunit#BaseTests.testPackNormal" time="">
-    <failure>Assertion failed: "assert Fill.botFilled" (Line 167)
-    	name: Fill.botFilled, value: 
-    </failure>
   </testcase>
   <testcase name="testPackCrimp1" classname="platform:/resource/sees-secps-ha-25/BaseTests-25.sctunit#BaseTests.testPackCrimp1" time="">
-    <failure>Assertion failed: "assert Pack.labelled" (Line 191)
-    	name: Pack.labelled, value: 
-    </failure>
   </testcase>
   <testcase name="testPackCrimp2" classname="platform:/resource/sees-secps-ha-25/BaseTests-25.sctunit#BaseTests.testPackCrimp2" time="">
-    <failure>Assertion failed: "assert Pack.crimpCheck" (Line 207)
-    	name: Pack.crimpCheck, value: 
-    </failure>
   </testcase>
   <testcase name="testTempFaultEm" classname="platform:/resource/sees-secps-ha-25/BaseTests-25.sctunit#BaseTests.testTempFaultEm" time="">
   </testcase>
@@ -67,197 +40,16 @@
   <testcase name="testPressureSens" classname="platform:/resource/sees-secps-ha-25/BaseTests-25.sctunit#BaseTests.testPressureSens" time="">
   </testcase>
   <testcase name="testBreach" classname="platform:/resource/sees-secps-ha-25/BaseTests-25.sctunit#BaseTests.testBreach" time="">
-    <failure>Assertion failed: "assert Env.breach" (Line 339)
-    	name: Env.breach, value: 
-    </failure>
   </testcase>
   <testcase name="testEmergencyReset" classname="platform:/resource/sees-secps-ha-25/BaseTests-25.sctunit#BaseTests.testEmergencyReset" time="">
   </testcase>
   <testcase name="testProductionCycle" classname="platform:/resource/sees-secps-ha-25/BaseTests-25.sctunit#BaseTests.testProductionCycle" time="">
-    <failure>Assertion failed: "assert Fill.botFilled" (Line 375)
-    	name: Fill.botFilled, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.feed" (Line 377)
-    	name: Fill.feed, value: 
-    </failure>
-    <failure>Assertion failed: "assert Pack.print" (Line 379)
-    	name: Pack.print, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.check" (Line 380)
-    	name: Fill.check, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.fill" (Line 382)
-    	name: Fill.fill, value: 
-    </failure>
-    <failure>Assertion failed: "assert Pack.seal" (Line 386)
-    	name: Pack.seal, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.botFilled" (Line 375)
-    	name: Fill.botFilled, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.feed" (Line 377)
-    	name: Fill.feed, value: 
-    </failure>
-    <failure>Assertion failed: "assert Pack.print" (Line 379)
-    	name: Pack.print, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.check" (Line 380)
-    	name: Fill.check, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.fill" (Line 382)
-    	name: Fill.fill, value: 
-    </failure>
-    <failure>Assertion failed: "assert Pack.seal" (Line 386)
-    	name: Pack.seal, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.botFilled" (Line 375)
-    	name: Fill.botFilled, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.feed" (Line 377)
-    	name: Fill.feed, value: 
-    </failure>
-    <failure>Assertion failed: "assert Pack.print" (Line 379)
-    	name: Pack.print, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.check" (Line 380)
-    	name: Fill.check, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.fill" (Line 382)
-    	name: Fill.fill, value: 
-    </failure>
-    <failure>Assertion failed: "assert Pack.seal" (Line 386)
-    	name: Pack.seal, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.botFilled" (Line 375)
-    	name: Fill.botFilled, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.feed" (Line 377)
-    	name: Fill.feed, value: 
-    </failure>
-    <failure>Assertion failed: "assert Pack.print" (Line 379)
-    	name: Pack.print, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.check" (Line 380)
-    	name: Fill.check, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.fill" (Line 382)
-    	name: Fill.fill, value: 
-    </failure>
-    <failure>Assertion failed: "assert Pack.seal" (Line 386)
-    	name: Pack.seal, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.botFilled" (Line 375)
-    	name: Fill.botFilled, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.feed" (Line 377)
-    	name: Fill.feed, value: 
-    </failure>
-    <failure>Assertion failed: "assert Pack.print" (Line 379)
-    	name: Pack.print, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.check" (Line 380)
-    	name: Fill.check, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.fill" (Line 382)
-    	name: Fill.fill, value: 
-    </failure>
-    <failure>Assertion failed: "assert Pack.seal" (Line 386)
-    	name: Pack.seal, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.botFilled" (Line 375)
-    	name: Fill.botFilled, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.feed" (Line 377)
-    	name: Fill.feed, value: 
-    </failure>
-    <failure>Assertion failed: "assert Pack.print" (Line 379)
-    	name: Pack.print, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.check" (Line 380)
-    	name: Fill.check, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.fill" (Line 382)
-    	name: Fill.fill, value: 
-    </failure>
-    <failure>Assertion failed: "assert Pack.seal" (Line 386)
-    	name: Pack.seal, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.botFilled" (Line 375)
-    	name: Fill.botFilled, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.feed" (Line 377)
-    	name: Fill.feed, value: 
-    </failure>
-    <failure>Assertion failed: "assert Pack.print" (Line 379)
-    	name: Pack.print, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.check" (Line 380)
-    	name: Fill.check, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.fill" (Line 382)
-    	name: Fill.fill, value: 
-    </failure>
-    <failure>Assertion failed: "assert Pack.seal" (Line 386)
-    	name: Pack.seal, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.botFilled" (Line 375)
-    	name: Fill.botFilled, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.feed" (Line 377)
-    	name: Fill.feed, value: 
-    </failure>
-    <failure>Assertion failed: "assert Pack.print" (Line 379)
-    	name: Pack.print, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.check" (Line 380)
-    	name: Fill.check, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.fill" (Line 382)
-    	name: Fill.fill, value: 
-    </failure>
-    <failure>Assertion failed: "assert Pack.seal" (Line 386)
-    	name: Pack.seal, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.botFilled" (Line 375)
-    	name: Fill.botFilled, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.feed" (Line 377)
-    	name: Fill.feed, value: 
-    </failure>
-    <failure>Assertion failed: "assert Pack.print" (Line 379)
-    	name: Pack.print, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.check" (Line 380)
-    	name: Fill.check, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.fill" (Line 382)
-    	name: Fill.fill, value: 
-    </failure>
-    <failure>Assertion failed: "assert Pack.seal" (Line 386)
-    	name: Pack.seal, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.botFilled" (Line 375)
-    	name: Fill.botFilled, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.feed" (Line 377)
-    	name: Fill.feed, value: 
-    </failure>
-    <failure>Assertion failed: "assert Pack.print" (Line 379)
-    	name: Pack.print, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.check" (Line 380)
-    	name: Fill.check, value: 
-    </failure>
-    <failure>Assertion failed: "assert Fill.fill" (Line 382)
-    	name: Fill.fill, value: 
-    </failure>
-    <failure>Assertion failed: "assert Pack.seal" (Line 386)
-    	name: Pack.seal, value: 
-    </failure>
   </testcase>
   <testcase name="testEmResolve" classname="platform:/resource/sees-secps-ha-25/BaseTests-25.sctunit#BaseTests.testEmResolve" time="">
-    <failure>Assertion failed: "assert Fill.botFilled" (Line 399)
-    	name: Fill.botFilled, value: 
+  </testcase>
+  <testcase name="testSelf" classname="platform:/resource/sees-secps-ha-25/BaseTests-25.sctunit#BaseTests.testSelf" time="">
+    <failure>Assertion failed: "assert !Env.emRes" (Line 467)
+    	name: Env.emRes, value: 
     </failure>
   </testcase>
 </testsuite>
